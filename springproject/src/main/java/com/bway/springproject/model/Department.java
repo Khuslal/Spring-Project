@@ -1,27 +1,20 @@
 package com.bway.springproject.model;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 
+@Data
 @Entity
-@Getter
-@Setter
-@ToString
-@Table(name = "users")
-public class User {
+@Table(name="department")
+public class Department {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private String fname;
-	private String lname;
-	@Column(unique = true)
-	private String username;
-	private String password;
+	private String deptName;
+	private String deptPhone;
+	private String deptHead;
 }

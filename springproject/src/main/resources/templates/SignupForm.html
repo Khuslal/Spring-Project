@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://thymeleaf.org">
 
 <head></head>
 <title>Register</title>
@@ -8,19 +8,19 @@
 
 	<h1>Register Page</h1>
 	<h2 style="color: green;">[[${message}]]</h2>
-	<form action="/signup" method="post">
+	<form th:action="@{/signup}" method="post">
 
 		<label>First Name :</label>
-		<input type="text" name="fname">
+		<input type="text" name="fname" required>
 		<br>
 		<label>Last Name :</label>
-		<input type="text" name="lname">
+		<input type="text" name="lname" required>
 		<br>
 		<label>Username :</label>
-		<input type="text" name="username">
+		<input type="text" name="username" required>
 		<br>
 		<label>Password :</label>
-		<input type="password" name="password">
+		<input type="password" name="password" required>
 		<br>
 		<input type="submit" value="Register" style="background-color: darkgreen; color: whitesmoke; border-radius: 5px; border: none; padding: 6px;">
 	</form>

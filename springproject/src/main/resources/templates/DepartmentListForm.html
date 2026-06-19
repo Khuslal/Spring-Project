@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Department List</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+	<div class="container-fluid">
+		<div class="card">
+			<div class="card-header text-center bg-primary text-white">
+				<h5>Department List</h5>
+			</div>
+
+			<div class="card-body">
+				<table class="table table-stripted">
+					<thead>
+						<tr th:each="d : ${dList}">
+							<td>[[${d.deptName}]]</td>
+							<td>[[${d.deptPhone}]]</td>
+							<td>[[${d.deptHead}]]</td>
+							<td>
+								<a th:href="@{/department/edit(id=${d.id})}"><input type="submit" value="Edit"
+										class="btn btn-success"></a>
+								<a th:href="@{/department/delete(id=${d.id})}"><input type="submit" value="Delete"
+										class="btn btn-danger"></a>
+							</td>
+						</tr>
+					</thead>
+				</table>
+			</div>
+
+			<div class="card-footer text-center bg-secondary text-white">
+				copyright@2026
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

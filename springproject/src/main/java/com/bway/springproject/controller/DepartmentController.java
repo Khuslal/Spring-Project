@@ -1,0 +1,54 @@
+package com.bway.springproject.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.bway.springproject.model.Department;
+import com.bway.springproject.service.DepartmentService;
+
+@Controller
+public class DepartmentController {
+	@Autowired
+	private DepartmentService deptService;
+	
+	@GetMapping("/department")
+	public String getDepartment() {
+		return "DepartmentForm";
+	}
+	
+	@PostMapping("/department")
+	public String postDepartment(@ModelAttribute Department dept) {
+		deptService.addDept(dept);
+		return "DepartmentForm";
+	}
+	
+	@GetMapping("/departmentList")
+	public String getAllDepartment(@ModelAttribute Department dept, Model model) {
+		model.addAttribute("dList", deptService.getAllDepts());
+		return "DepartmentListForm";
+	}
+	
+	@GetMapping("/department/edit") 
+	// @RequestParam("id") is the thymeleaf variable name
+	public String edit(@RequestParam("id") int deptId, Model model) {
+		model.addAttribute("dModel", deptService.getDeptByID(deptId));
+		return "DepartmentEditForm";
+	}
+	
+	@PostMapping("/department/update")
+	public String update(@ModelAttribute Department dept) {
+		deptService.updateDept(dept);
+		return "redirect:/departmentList";
+	}
+	
+	@GetMapping("/department/delete")
+	public String delete(@RequestParam("id") int del) {
+		deptService.deleteDept(del);
+		return "redirect:/departmentList";
+	}
+}
