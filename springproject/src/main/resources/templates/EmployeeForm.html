@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Employee Form</title>
+</head>
+
+<body>
+	<h1>Welcome to the Employee Form Page</h1>
+	<hr>
+	<hr>
+	<div class="container-fluid">
+		<div class="card">
+			<div class="card-header text-center bg-primary text-white">
+				<h5>Employee Form</h5>
+			</div>
+			<div class="card-body">
+
+				<h1>Register Page</h1>
+				<h2 style="color: green;">[[${message}]]</h2>
+				<form th:action="@{/employee}" method="post">
+
+					<label>First Name :</label>
+					<input type="text" name="fname" required>
+					<br>
+					<label>Last Name :</label>
+					<input type="text" name="lname" required>
+					<br>
+					<label>Email :</label>
+					<input type="email" name="email" required>
+					<br>
+					<label>Phone :</label>
+					<input type="text" name="phone" required>
+					<br>
+					<div class="col-6">
+						<label for="gender">Gender:</label>
+						<select id="gender" name="gender">
+							<option value="male">Male</option>
+							<option value="female">Female</option>
+						</select>
+					</div>
+
+					<br>
+
+					<label>Date Of Birth :</label>
+					<input type="date" name="dob">
+					<br>
+
+					<label>Company :</label>
+					<input type="text" name="company" required>
+					<br>
+					<label>Post :</label>
+					<input type="text" name="post" required>
+					<br>
+					<label>Salary :</label>
+					<input type="number" name="salary" required>
+					<br>
+
+					<label>Join Date :</label>
+					<input type="date" name="joinDate">
+					<br>
+
+					<label>Country :</label>
+					<input type="text" name="address.country" required>
+					<br>
+					<label>City :</label>
+					<input type="text" name="address.city" required>
+					<br>
+					<label>State :</label>
+					<input type="text" name="address.state" required>
+					<br>
+					<label>ZipCode :</label>
+					<input type="text" name="address.zipcode" required>
+					<br>
+					<div class="col-6"> Department :
+						<select name="departments" class="form-control">
+							<option value="">Select</option>
+							<option th:each="d: ${dList}" th:value="${d.id}">[[${d.deptName}]]</option>
+						</select>
+					</div>
+					<br>
+					
+					<div class="col-6">
+					    <span class="d-block mb-2">Projects:</span>
+					    <label><input type="checkbox" name="projects" value="Project-1"> Project-1</label>
+					    <label><input type="checkbox" name="projects" value="Project-2"> Project-2</label>
+					    <label><input type="checkbox" name="projects" value="Project-3"> Project-3</label>
+					    <label><input type="checkbox" name="projects" value="Project-4"> Project-4</label>
+					    <label><input type="checkbox" name="projects" value="Project-5"> Project-5</label>
+					</div>
+
+
+					<br>
+
+					<input type="submit" value="Register"
+						style="background-color: darkgreen; color: whitesmoke; border-radius: 5px; border: none; padding: 6px;">
+				</form>
+
+			</div>
+			<div class="card-footer text-center bg-secondary text-white">
+				copyright@2026
+			</div>
+		</div>
+	</div>
+	<br>
+	<a href="/login"
+		style="background-color: darkred; color: white; padding: 5px 10px; text-decoration: none; border-radius: 4px;">Logout</a>
+</body>
+
+</html>
