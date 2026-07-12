@@ -20,6 +20,12 @@
 			<div class="card-body">
 				<table class="table table-stripted">
 					<thead>
+						<tr>
+							<td style="background-color: rgb(12, 116, 14); color: antiquewhite;">Department Name</td>
+							<td style="background-color: rgb(12, 116, 14); color: antiquewhite;">Contact</td>
+							<td style="background-color: rgb(12, 116, 14); color: antiquewhite;">Department Head</td>
+							<td style="background-color: rgb(12, 116, 14); color: antiquewhite;">Actions</td>
+						</tr>
 						<tr th:each="d : ${dList}">
 							<td>[[${d.deptName}]]</td>
 							<td>[[${d.deptPhone}]]</td>
