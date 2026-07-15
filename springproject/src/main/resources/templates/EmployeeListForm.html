@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Department List</title>
+	<title>Employee List</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
 	<!-- Latest compiled JavaScript -->
@@ -15,26 +15,32 @@
 	<div class="container-fluid">
 		<div class="card">
 			<div class="card-header text-center bg-primary text-white">
-				<h5>Department List</h5>
+				<h5>Employee List</h5>
 			</div>
 
 			<div class="card-body">
 				<table class="table table-stripted">
 					<thead>
 						<tr>
-							<td style="background-color: rgb(12, 116, 14); color: antiquewhite;">Department Name</td>
-							<td style="background-color: rgb(12, 116, 14); color: antiquewhite;">Contact</td>
-							<td style="background-color: rgb(12, 116, 14); color: antiquewhite;">Department Head</td>
+							<td style="background-color: rgb(12, 116, 14); color: antiquewhite;">Employee ID</td>
+							<td style="background-color: rgb(12, 116, 14); color: antiquewhite;">FirstName</td>
+							<td style="background-color: rgb(12, 116, 14); color: antiquewhite;">LastName</td>
+							<td style="background-color: rgb(12, 116, 14); color: antiquewhite;">Email</td>
+							<td style="background-color: rgb(12, 116, 14); color: antiquewhite;">Phone</td>
+							<td style="background-color: rgb(12, 116, 14); color: antiquewhite;">Gender</td>
 							<td style="background-color: rgb(12, 116, 14); color: antiquewhite;">Actions</td>
 						</tr>
-						<tr th:each="d : ${dList}">
-							<td>[[${d.deptName}]]</td>
-							<td>[[${d.deptPhone}]]</td>
-							<td>[[${d.deptHead}]]</td>
+						<tr th:each="e : ${eList}">
+							<td>[[${e.id}]]</td>
+							<td>[[${e.fname}]]</td>
+							<td>[[${e.lname}]]</td>
+							<td>[[${e.email}]]</td>
+							<td>[[${e.phone}]]</td>
+							<td>[[${e.gender}]]</td>
 							<td>
-								<a th:href="@{/department/edit(id=${d.id})}"><input type="submit" value="Edit"
+								<a th:href="@{/employee/edit(id=${e.id})}"><input type="submit" value="Edit"
 										class="btn btn-success"></a>
-								<a th:href="@{/department/delete(id=${d.id})}"><input type="submit" value="Delete"
+								<a th:href="@{/employee/delete(id=${e.id})}"><input type="submit" value="Delete"
 										class="btn btn-danger"></a>
 							</td>
 						</tr>

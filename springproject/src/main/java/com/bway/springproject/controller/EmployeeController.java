@@ -6,7 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.bway.springproject.model.Department;
 import com.bway.springproject.model.Employee;
 import com.bway.springproject.service.DepartmentService;
 import com.bway.springproject.service.EmployeeService;
@@ -30,5 +32,30 @@ public class EmployeeController {
 	public String postEmployee(@ModelAttribute Employee emp) {
 		empService.addEmp(emp);
 		return "redirect:/employee";
+	}
+	
+	@GetMapping("/employeeList")
+	public String getAllEmployee(@ModelAttribute Employee emp, Model model) {
+		model.addAttribute("eList", empService.getAllEmps());
+		return "EmployeeListForm";
+	}
+	
+	@GetMapping("/employee/edit") 
+	// @RequestParam("id") is the thymeleaf variable name
+	public String edit(@RequestParam("id") int empId, Model model) {
+		model.addAttribute("eModel", empService.getEmpById(empId));
+		return "EmployeeEditForm";
+	}
+	
+	@PostMapping("/employee/update")
+	public String update(@ModelAttribute Employee emp) {
+		empService.updateEmp(emp);
+		return "redirect:/employeeList";
+	}
+	
+	@GetMapping("/employee/delete")
+	public String delete(@RequestParam("id") int del) {
+		empService.deleteEmp(del);
+		return "redirect:/employeeList";
 	}
 }
