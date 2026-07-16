@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.bway.springproject.model.Department;
 import com.bway.springproject.model.Employee;
 import com.bway.springproject.service.DepartmentService;
 import com.bway.springproject.service.EmployeeService;
