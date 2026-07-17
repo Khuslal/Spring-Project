@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bway.springproject.model.User;
+import com.bway.springproject.repository.ProductRepository;
+import com.bway.springproject.service.ProductService;
 import com.bway.springproject.service.UserService;
 
 import jakarta.servlet.http.HttpSession;
@@ -18,13 +20,22 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-	@GetMapping({ "/", "/login" })
+	@Autowired
+	private ProductRepository productRepo;
+
+	@GetMapping("/")
+	public String customerHome(Model model) {
+		model.addAttribute("plist", productRepo.findAll());
+		return "CustomerHome";
+	}
+
+	@GetMapping("/login")
 	public String getLogin() {
 		return "LoginForm";
 	}
 
 	@PostMapping("/login")
-	public String postLogin(@ModelAttribute User user, Model model, RedirectAttributes redirectAt,
+	public String postLogin(@ModelAttribute User user, Model model, RedirectAttributes redirectAttributes,
 			HttpSession session) {
 		User dbuser = userService.userLogin(user.getUsername(), user.getPassword());
 
@@ -33,9 +44,14 @@ public class UserController {
 			session.setAttribute("activeUser", dbuser);
 			session.setMaxInactiveInterval(5 * 60);
 
+			if (dbuser.getRole().equals("CUSTOMER")) {
+				model.addAttribute("plist", productRepo.findAll());
+				return "CustomerHome";
+			}
+
 			return "home";
 		}
-		redirectAt.addFlashAttribute("error", "Invalid username or password!");
+		redirectAttributes.addFlashAttribute("error", "Invalid username or password!");
 		return "redirect:/login";
 	}
 
@@ -62,14 +78,13 @@ public class UserController {
 		redirectAttributes.addFlashAttribute("message", "Data saved successfully.");
 		return "redirect:/login";
 	}
-	
+
 	@GetMapping("/profile")
 	public String getProfile(HttpSession session) {
-		if(session.getAttribute("activeUser") == null) {
+		if (session.getAttribute("activeUser") == null) {
 			return "LoginForm";
 		}
 		return "Profile";
 	}
-	
-	
+
 }
