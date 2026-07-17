@@ -34,7 +34,7 @@ public class EmployeeController {
 	}
 	
 	@GetMapping("/employeeList")
-	public String getAllEmployee(@ModelAttribute Employee emp, Model model) {
+	public String getAllEmployee(Model model) {
 		model.addAttribute("eList", empService.getAllEmps());
 		return "EmployeeListForm";
 	}

@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Home Dashboard</title>
+	<meta charset="UTF-8">
+	<title>Home Dashboard</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+	<link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
+
 <body>
-	<th:block th:insert="Header.html"></th:block>
-    <h1>Welcome to the HOME PAGE</h1>
-    <hr>
-    <br>
+	<div th:replace="Header :: navbar"></div>
+	<h1>Welcome to the HOME PAGE</h1>
 	<hr>
-	
+	<br>
+	<hr>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<title>Upload Form</title>
+	<title>Product Gallery Form</title>
 	<!-- Latest compiled and minified CSS -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" th:href="@{/css/style.css}">
@@ -10,31 +10,18 @@
 
 <body>
 	<div th:replace="Header :: navbar"></div>
-	<h1>Welcome to the Upload Page</h1>
+	<h1>Welcome to the Product Gallery</h1>
 	<hr>
 	<hr>
 	<div class="container-fluid">
 		<div class="card">
 			<div class="card-header text-center bg-primary text-white">
-				<h5>Upload Files Here</h5>
+				<h5>Product Gallery</h5>
 			</div>
 			<div class="card-body">
-				<form action="/upload" method="post" enctype="multipart/form-data">
-					<div class="row m-2">
-						<div class="col-4">Select Image</div>
-						<div class="col-6">
-							<input type="file" name="image" class="form-control">
-						</div>
-					</div>
-
-					<div class="row m-2">
-						<div class="col-4">Select Image</div>
-						<div class="col-6">
-							<input type="submit" value="Upload" class="btn btn-success">
-						</div>
-					</div>
-					[[${message}]]
-				</form>
+				<span th:each="p : ${productList}">
+					<img border="1" class="m-2" alt="" th:src="@{${p.image}}" width="300" height="300">
+				</span>
 			</div>
 			<div class="card-footer text-center bg-secondary text-white">
 				copyright@2026

@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
@@ -8,13 +7,11 @@
 
 	<!-- Bootstrap CSS -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-
-	<!-- Bootstrap JS -->
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 
 <body>
-	<th:block th:insert="Header.html"></th:block>
+	<div th:replace="Header :: navbar"></div>
 	<h1 class="text-center mt-3">Welcome to the Employee Page</h1>
 	<hr>
 	<hr>
@@ -139,9 +136,7 @@
 						<div class="col-6">
 							<select name="departments" class="form-select">
 								<option value="">Select Department</option>
-								<option th:each="d : ${dList}"
-										th:value="${d.id}"
-										th:text="${d.deptName}">
+								<option th:each="d : ${dList}" th:value="${d.id}" th:text="${d.deptName}">
 								</option>
 							</select>
 						</div>
@@ -204,6 +199,8 @@
 		<a href="/logout" class="btn btn-danger">Logout</a>
 	</div>
 
+	<!-- Bootstrap JS -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

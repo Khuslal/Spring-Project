@@ -22,13 +22,14 @@ public class DepartmentController {
 	}
 	
 	@PostMapping("/department")
-	public String postDepartment(@ModelAttribute Department dept) {
+	public String postDepartment(@ModelAttribute Department dept, Model model) {
 		deptService.addDept(dept);
+		model.addAttribute("message", "Data Save Successfully.");
 		return "DepartmentForm";
 	}
 	
 	@GetMapping("/departmentList")
-	public String getAllDepartment(@ModelAttribute Department dept, Model model) {
+	public String getAllDepartment(Model model) {
 		model.addAttribute("dList", deptService.getAllDepts());
 		return "DepartmentListForm";
 	}

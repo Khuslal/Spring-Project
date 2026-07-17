@@ -1,107 +1,135 @@
-<!DOCTYPE html>
-<html>
+<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
 
-<head>
-	<title>Header</title>
-</head>
+	<!-- Brand -->
+	<a class="navbar-brand navbar-brand-bold" th:href="@{/home}">
+		Spring-Project
+	</a>
 
-<body>
+	<!-- Welcome & Logout -->
+	<div th:if="${session.activeUser}" class="d-flex align-items-center">
+		<span class="welcome-text me-2">
+			Welcome,
+			<strong>[[${session.activeUser.fname}]]</strong>
+		</span>
 
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-	<style>
-		.navbar-brand-bold {
-			font-weight: 700;
-			font-size: 1.4rem;
-			letter-spacing: 0.5px;
-		}
-
-		.welcome-text {
-			color: #f1f1f1;
-			margin-right: 10px;
-		}
-	</style>
-
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
-
-		<!--Front-Desk-->
-		<a class="navbar-brand navbar-brand-bold">
-			Spring-Project
+		<a class="btn btn-outline-light btn-sm me-3" th:href="@{/logout}">
+			Logout
 		</a>
+	</div>
 
-		<!-- Left side: Welcome text + Logout -->
-		<div th:if="${session.activeUser}">
-			<span class="welcome-text">
-				Welcome, <strong>[[${session.activeUser.fname}]]</strong>
-			</span>
-			<a class="btn btn-outline-light btn-sm me-3" th:href="@{/logout}">
-				Logout
-			</a>
-		</div>
+	<!-- Mobile Toggle -->
+	<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+		aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
 
+		<span class="navbar-toggler-icon"></span>
 
-		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
-			<span class="navbar-toggler-icon"></span>
-		</button>
+	</button>
 
-		<div class="collapse navbar-collapse" id="mainNavbar">
+	<!-- Navbar -->
+	<div class="collapse navbar-collapse" id="mainNavbar">
 
-			<!-- Main Nav Links (right side) -->
-			<ul class="navbar-nav ms-auto">
+		<ul class="navbar-nav ms-auto">
 
-				<li class="nav-item">
-					<a class="nav-link" href="/home">Home</a>
-				</li>
+			<!-- Home -->
+			<li class="nav-item">
+				<a class="nav-link" th:href="@{/home}">
+					Home
+				</a>
+			</li>
 
-				<!-- Department Dropdown -->
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="departmentDropdown" role="button"
-						data-bs-toggle="dropdown" aria-expanded="false">
-						Department
-					</a>
-					<ul class="dropdown-menu" aria-labelledby="departmentDropdown">
-						<li><a class="dropdown-item" href="/department">Add
-								Department</a></li>
-						<li><a class="dropdown-item" href="/departmentList">View
-								Departments</a></li>
-					</ul>
-				</li>
+			<!-- Department -->
+			<li class="nav-item dropdown">
 
-				<!-- Employee Dropdown -->
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="employeeDropdown" role="button"
-						data-bs-toggle="dropdown" aria-expanded="false">
-						Employee
-					</a>
-					<ul class="dropdown-menu" aria-labelledby="employeeDropdown">
-						<li><a class="dropdown-item" href="/employee">Add
-								Employee</a></li>
-						<li><a class="dropdown-item" href="/employeeList">View
-								Employees</a></li>
-					</ul>
-				</li>
+				<a class="nav-link dropdown-toggle" href="#" id="departmentDropdown" role="button"
+					data-bs-toggle="dropdown" aria-expanded="false">
 
-				<li class="nav-item">
-					<a class="nav-link" href="/gallery">Gallery</a>
-				</li>
+					Department
 
-				<li class="nav-item">
-					<a class="nav-link" href="/upload">Upload</a>
-				</li>
+				</a>
 
-				<li class="nav-item">
-					<a class="nav-link" href="/contact">Contact</a>
-				</li>
+				<ul class="dropdown-menu" aria-labelledby="departmentDropdown">
 
-				<li class="nav-item">
-					<a class="nav-link" href="/profile">Profile</a>
-				</li>
+					<li>
+						<a class="dropdown-item" th:href="@{/department}">
+							Add Department
+						</a>
+					</li>
 
-			</ul>
+					<li>
+						<a class="dropdown-item" th:href="@{/departmentList}">
+							View Departments
+						</a>
+					</li>
 
-		</div>
-	</nav>
-</body>
+				</ul>
 
-</html>
+			</li>
+
+			<!-- Employee -->
+			<li class="nav-item dropdown">
+
+				<a class="nav-link dropdown-toggle" href="#" id="employeeDropdown" role="button"
+					data-bs-toggle="dropdown" aria-expanded="false">
+
+					Employee
+
+				</a>
+
+				<ul class="dropdown-menu" aria-labelledby="employeeDropdown">
+
+					<li>
+						<a class="dropdown-item" th:href="@{/employee}">
+							Add Employee
+						</a>
+					</li>
+
+					<li>
+						<a class="dropdown-item" th:href="@{/employeeList}">
+							View Employees
+						</a>
+					</li>
+
+				</ul>
+
+			</li>
+
+			<!-- Gallery -->
+			<li class="nav-item">
+				<a class="nav-link" th:href="@{/gallery}">
+					Gallery
+				</a>
+			</li>
+
+			<!-- Upload -->
+			<li class="nav-item">
+				<a class="nav-link" th:href="@{/upload}">
+					Upload
+				</a>
+			</li>
+
+			<!-- Contact -->
+			<li class="nav-item">
+				<a class="nav-link" th:href="@{/contact}">
+					Contact
+				</a>
+			</li>
+
+			<!-- Profile -->
+			<li class="nav-item">
+				<a class="nav-link" th:href="@{/profile}">
+					Profile
+				</a>
+			</li>
+			
+			<!-- Product Gallery -->
+						<li class="nav-item">
+							<a class="nav-link" th:href="@{/productGallery}">
+								Product Gallery
+							</a>
+						</li>
+
+		</ul>
+
+	</div>
+
+</nav>
