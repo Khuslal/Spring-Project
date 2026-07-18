@@ -10,7 +10,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bway.springproject.model.User;
 import com.bway.springproject.repository.ProductRepository;
-import com.bway.springproject.service.ProductService;
 import com.bway.springproject.service.UserService;
 
 import jakarta.servlet.http.HttpSession;
