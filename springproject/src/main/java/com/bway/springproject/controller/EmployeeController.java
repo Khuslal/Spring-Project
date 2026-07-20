@@ -21,19 +21,19 @@ public class EmployeeController {
 	@Autowired
 	private DepartmentService deptService;
 	
-	@GetMapping("/employee")
+	@GetMapping({"/employee/add","/employee/add/"})
 	public String getEmployee(Model model) {
 		model.addAttribute("dList", deptService.getAllDepts());
 		return "EmployeeForm";
 	}
 	
-	@PostMapping("/employee")
+	@PostMapping({"/employee/add","/employee/add/"})
 	public String postEmployee(@ModelAttribute Employee emp) {
 		empService.addEmp(emp);
 		return "redirect:/employee";
 	}
 	
-	@GetMapping("/employeeList")
+	@GetMapping({"/employee","/employee/"})
 	public String getAllEmployee(Model model) {
 		model.addAttribute("eList", empService.getAllEmps());
 		return "EmployeeListForm";
@@ -49,12 +49,12 @@ public class EmployeeController {
 	@PostMapping("/employee/update")
 	public String update(@ModelAttribute Employee emp) {
 		empService.updateEmp(emp);
-		return "redirect:/employeeList";
+		return "redirect:/employee";
 	}
 	
-	@GetMapping("/employee/delete")
+	@GetMapping({"/employee/delete","/employee/delete/"})
 	public String delete(@RequestParam("id") int del) {
 		empService.deleteEmp(del);
-		return "redirect:/employeeList";
+		return "redirect:/employee";
 	}
 }

@@ -20,7 +20,7 @@ import com.bway.springproject.service.EmployeeService;
 import com.bway.springproject.service.ProductService;
 
 @RestController
-@RequestMapping("/employee")
+@RequestMapping("/api/employee")
 public class EmployeeRestController {
 
 	@Autowired
