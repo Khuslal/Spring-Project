@@ -1,14 +1,16 @@
 package com.bway.springproject.utils;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
 @Component
 public class MailUtils {
-	@Autowired
-	private JavaMailSender mailSender;
+	private final JavaMailSender mailSender;
+
+	MailUtils(JavaMailSender mailSender) {
+		this.mailSender = mailSender;
+	}
 	
 	public void sendMail(String toEmail, String subject, String message) {
 		SimpleMailMessage mail = new SimpleMailMessage();

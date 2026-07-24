@@ -2,7 +2,6 @@ package com.bway.springproject.serviceimpl;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bway.springproject.model.Department;
@@ -11,8 +10,11 @@ import com.bway.springproject.service.DepartmentService;
 
 @Service
 public class DepartmentServiceImpl implements DepartmentService {
-	@Autowired
-	private DepartmentRepository deptRepo;
+	private final DepartmentRepository deptRepo;
+
+	DepartmentServiceImpl(DepartmentRepository deptRepo) {
+		this.deptRepo = deptRepo;
+	}
 
 	@Override
 	public void addDept(Department dept) {

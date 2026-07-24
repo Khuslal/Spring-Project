@@ -3,7 +3,6 @@ package com.bway.springproject.restAPI;
 import java.util.Arrays;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,11 +22,14 @@ import com.bway.springproject.service.ProductService;
 @RequestMapping("/api/employee")
 public class EmployeeRestController {
 
-	@Autowired
-	private EmployeeService empService;
+	private final EmployeeService empService;
 	
-	@Autowired
-	private ProductService productService;
+	private final ProductService productService;
+
+	EmployeeRestController(EmployeeService empService, ProductService productService) {
+		this.empService = empService;
+		this.productService = productService;
+	}
 
 	// Get All Employees Data
 	@GetMapping("/list")
