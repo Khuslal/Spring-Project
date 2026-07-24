@@ -1,6 +1,5 @@
 package com.bway.springproject.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,11 +14,14 @@ import com.bway.springproject.service.EmployeeService;
 @Controller
 public class EmployeeController {
 	
-	@Autowired
-	private EmployeeService empService;
+	private final EmployeeService empService;
 	
-	@Autowired
-	private DepartmentService deptService;
+	private final DepartmentService deptService;
+
+	EmployeeController(EmployeeService empService, DepartmentService deptService) {
+		this.empService = empService;
+		this.deptService = deptService;
+	}
 	
 	@GetMapping({"/employee/add","/employee/add/"})
 	public String getEmployee(Model model) {

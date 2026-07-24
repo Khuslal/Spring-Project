@@ -130,9 +130,22 @@
 							class="rounded-circle btn-md-square border"><i class="fas fa-random"></i></i></a>
 					<a href="#" class="text-muted d-flex align-items-center justify-content-center me-3"><span
 							class="rounded-circle btn-md-square border"><i class="fas fa-heart"></i></a>
-					<a href="/addToCart" class="text-muted d-flex align-items-center justify-content-center"><span
-							class="rounded-circle btn-md-square border"><i class="fas fa-shopping-cart"></i></span>
-						<span class="text-dark ms-2">$0.00</span></a>
+					<a th:href="@{/cart}"
+						class="text-muted d-flex align-items-center justify-content-center position-relative">
+						<!-- Cart Icon with Badge Count -->
+						<span class="rounded-circle btn-md-square border position-relative p-2">
+							<i class="fas fa-shopping-cart"></i>
+							<!-- Dynamic Badge Count -->
+							<span
+								class="position-absolute top-0 start-100 translate-middle badge rounded-circle bg-danger text-white"
+								th:text="${cartCount != null ? cartCount : 0}" style="font-size: 0.75rem;">0</span>
+						</span>
+
+						<!-- Dynamic Cart Total Price -->
+						<span class="text-dark ms-2"
+							th:text="'$' + ${grandTotal != null ? grandTotal : '0.00'}">$0.00</span>
+					</a>
+
 				</div>
 			</div>
 		</div>
@@ -1021,7 +1034,7 @@
 									</div>
 									<div
 										class="product-item-add border border-top-0 rounded-bottom text-center p-4 pt-0">
-										<a href="/addToCart"
+										<a th:href="@{/addToCart(id=${p.id})}"
 											class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4">
 											<i class="fas fa-shopping-cart me-2"></i> Add To Cart
 										</a>

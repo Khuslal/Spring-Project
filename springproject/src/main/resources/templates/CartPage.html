@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <title>Your Shopping Cart</title>
+    <link rel="stylesheet" href="https://jsdelivr.net">
+</head>
+<body class="container py-5">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Your Shopping Cart</h2>
+        <a th:href="@{/CustomerHome}" class="btn btn-outline-primary">Continue Shopping</a>
+    </div>
+
+    <!-- Empty Cart Scenario -->
+    <div th:if="${#lists.isEmpty(cartItems)}" class="alert alert-info text-center py-5">
+        <h4>Your cart is empty!</h4>
+        <p>Go back to the shop to find great items.</p>
+    </div>
+
+    <!-- Active Cart Table -->
+    <div th:if="${!#lists.isEmpty(cartItems)}">
+        <table class="table align-middle shadow-sm bg-white rounded">
+            <thead class="table-dark">
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="item : ${cartItems}">
+                    <td>
+                        <strong th:text="${item.product.name}">Product Name</strong>
+                    </td>
+                    <td th:text="'$' + ${item.product.price}">$0.00</td>
+                    <td th:text="${item.quantity}">1</td>
+                    <td th:text="'$' + (${item.product.price} * ${item.quantity})">$0.00</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Summary & Checkout Footer -->
+        <div class="d-flex justify-content-end align-items-center mt-4 p-3 bg-light rounded">
+            <h4 class="me-4 mb-0">Grand Total: <span class="text-success" th:text="'$' + ${grandTotal}">$0.00</span></h4>
+            <button class="btn btn-success btn-lg">Proceed to Checkout</button>
+        </div>
+    </div>
+
+</body>
+</html>

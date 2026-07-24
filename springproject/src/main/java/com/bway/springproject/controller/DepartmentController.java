@@ -1,6 +1,5 @@
 package com.bway.springproject.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,8 +12,11 @@ import com.bway.springproject.service.DepartmentService;
 
 @Controller
 public class DepartmentController {
-	@Autowired
-	private DepartmentService deptService;
+	private final DepartmentService deptService;
+
+	DepartmentController(DepartmentService deptService) {
+		this.deptService = deptService;
+	}
 	
 	@GetMapping("/department")
 	public String getDepartment() {

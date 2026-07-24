@@ -1,6 +1,5 @@
 package com.bway.springproject.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,8 +11,11 @@ import com.bway.springproject.utils.MailUtils;
 @Controller
 public class ContactController {
 	
-	@Autowired
-	private MailUtils mailUtils;
+	private final MailUtils mailUtils;
+
+	ContactController(MailUtils mailUtils) {
+		this.mailUtils = mailUtils;
+	}
 
 	@GetMapping("/contact")
 	public String contact() {
